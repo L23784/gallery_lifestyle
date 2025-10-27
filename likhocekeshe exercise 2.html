@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="gallery.css">
+    <title>Perfume gallery</title>
+    
+</head>
+<body>
+    <header>
+        <h1>My Perfume gallery</h1>
+    </header>
+
+    <button class="menu-toggle" id="menu-toggle">☰ Menu</button>
+
+
+    <div class="filter-sidebar" id="filter-sidebar">
+        <button class="filter btn active" data-filter="Home">Home (ALL)</button>
+        <button class="filter btn active" data-filter="Men">Men</button>
+        <button class="filter btn active" data-filter="Woman">Woman</button>
+        <button class="filter btn active" data-filter="Favorites">Favorites</button>
+
+
+    </div>
+    
+    <div class="gallery-grid">
+        <div class="card" data-filter="Woman">
+            <img src="J'adore.jpeg" alt="J'adore">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">J'adore</span>
+
+            </div>
+
+        </div>
+
+        <div class="card" data-filter="Woman">
+            <img src="J’adore Eau de Toilette Roller-Pearl.jpeg" alt="J’adore Eau de Toilette Roller-Pearl">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">J’adore Eau de Toilette Roller-Pearl</span>
+
+            </div>
+
+        </div>
+
+        <div class="card" data-filter="Woman">
+            <img src="Rouge Trafalgar Esprit de Parfum.jpeg" alt="Rouge Trafalgar Esprit de Parfum">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Rouge Trafalgar Esprit de Parfum</span>
+            </div>
+        </div>
+
+        <div class="card" data-filter="Woman">
+            <img src="Ambre Nuit Esprit de Parfum.jpeg" alt="Ambre Nuit Esprit de Parfum">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Ambre Nuit Esprit de Parfum</span>
+            </div>
+        </div>
+
+        <div class="card" data-filter="Woman">
+            <img src="Bois d’Argent Esprit de Parfum.jpeg" alt="Bois d’Argent Esprit de Parfum">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Bois d’Argent Esprit de Parfum</span>
+            </div>
+        </div>
+
+        <div class="card" data-filter="Woman">
+            <img src="Miss Dior Rose N'Roses.jpeg" alt="Miss Dior Rose N'Roses">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Miss Dior Rose N'Roses</span>
+            </div>
+        </div>
+
+        <div class="card" data-filter="Men">
+            <img src="Oud Ispahan.jpeg" alt="Oud Ispahan">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Oud Ispahan</span>
+            </div>
+        </div>
+        
+        <div class="card" data-filter="Men">
+            <img src="Sauvage Parfum.jpeg" alt="Sauvage Parfum">
+            <div class="card content">
+                 <h3>Dior</h3>
+                <span class="tag">Sauvage Parfum</span>
+            </div>
+        </div>
+
+        <div class="card" data-filter="Men">
+            <img src="Eau Sauvage.jpeg" alt="Eau Sauvage">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Eau Sauvage</span>
+            </div>
+        </div>
+
+        <div class="card" data-filter="Men">
+            <img src="Dune Pour Homme.jpeg" alt="Dune Pour Homme">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Dune Pour Homme</span>
+            </div>
+        </div>
+
+        <div class="card" data-filter="Men">
+            <img src="Fahrenheit.jpeg" alt="Fahrenheit">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Fahrenheit</span>
+            </div>
+        </div>
+
+           <div class="card" data-filter="Men">
+            <img src="Higher.jpeg" alt="Higher">
+            <div class="card content">
+                <h3>Dior</h3>
+                <span class="tag">Higher</span>
+            </div>
+        </div>  
+
+        <script>
+      const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryCards = document.querySelectorAll('.card');
+            const menuToggle = document.getElementById('menu-toggle');
+            const filterSidebar = document.getElementById('filter-sidebar');
+
+            
+            menuToggle.addEventListener('click', () => {
+                filterSidebar.classList.toggle('open');
+                menuToggle.classList.toggle('open');
+            });
+
+           
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    
+                    filterSidebar.classList.remove('open');
+                    menuToggle.classList.remove('open');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    galleryCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-filter');
+                        const isFavorite = card.getAttribute('data-favorite') === 'true';
+                        
+                        
+                        let shouldShow = false;
+
+                        if (filterValue === 'all') {
+                            shouldShow = true; 
+                        } else if (filterValue === 'Favorites') {
+                            shouldShow = isFavorite; 
+                        } else if (cardCategory === filterValue) {
+                            shouldShow = true; 
+                        }
+                        
+                        
+                        if (shouldShow) {
+                            card.classList.remove('filtered');
+                        } else {
+                            card.classList.add('filtered');
+                        }
+                    });
+                });
+            });
+        
+            
+
+        </script>
+
+
+         
+
+
+
+
+
+    
+</body>
+</html>
